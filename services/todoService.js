@@ -6,13 +6,13 @@ const todoRepository = require('../repositories/todoRepository')
 module.exports.addTodo = async (body) => {
   let returnObj = { error: null, success: null, message: null, }
 
-  const { todo } = body
+  const { todo, isCompleted } = body
   // Check for duplicate records
   const record = await todoRepository.getTodoByName(todo)
 
   if (!record) {
     // Add new
-    const payload = { todo }
+    const payload = { todo, isCompleted }
     await sequelize.transaction(async (t) => {
       await todoRepository.addNewTodo(payload, { t })
     })

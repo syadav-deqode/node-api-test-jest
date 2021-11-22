@@ -24,3 +24,7 @@ module.exports.getAllTodos = async () => {
 module.exports.updateTodo = async (id, payload) => {
   return await Todo.update(payload, { where: { id } })
 }
+
+module.exports.removeTodo = async (id) => {
+  return await Todo.destroy({ where: { id } })
+}

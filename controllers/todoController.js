@@ -20,3 +20,10 @@ module.exports.getTodoById = async (req, res, next) => {
   res.body = todo
   next()
 }
+
+module.exports.updateTodo = async (req, res, next) => {
+  const id = req.params.id
+  const todo = await todoService.updateTodo(id, req.body)
+  res.body = todo
+  next()
+}

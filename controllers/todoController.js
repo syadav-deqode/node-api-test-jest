@@ -13,3 +13,10 @@ module.exports.addTodo = async (req, res, next) => {
   res.body = todo
   next()
 }
+
+module.exports.getTodoById = async (req, res, next) => {
+  const id = req.params.id
+  const { todo } = await todoService.getTodoById(id)
+  res.body = todo
+  next()
+}

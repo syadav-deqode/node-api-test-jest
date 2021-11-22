@@ -50,3 +50,18 @@ module.exports.updateTodo = async (id, body) => {
 
   return returnObj
 }
+
+module.exports.removeTodo = async (id, body) => {
+  let returnObj = { error: null, success: null, message: null, }
+
+  const { todo } = await todoRepository.getTodoById(id)
+  if (!todo) {
+    returnObj = { ...returnObj, error: true, message: "No record found" }
+    return returnObj
+  }
+
+  await todoRepository.removeTodo(id)
+  returnObj = { ...returnObj, success: true, message: "Requested Record removed" }
+
+  return returnObj
+}

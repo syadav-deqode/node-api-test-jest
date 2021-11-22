@@ -27,3 +27,10 @@ module.exports.updateTodo = async (req, res, next) => {
   res.body = todo
   next()
 }
+
+module.exports.removeTodo = async (req, res, next) => {
+  const id = req.params.id
+  const todo = await todoService.removeTodo(id)
+  res.body = todo
+  next()
+}

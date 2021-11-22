@@ -20,3 +20,7 @@ module.exports.getAllTodos = async () => {
   const todos = await Todo.findAll({})
   return { todos }
 }
+
+module.exports.updateTodo = async (id, payload) => {
+  return await Todo.update(payload, { where: { id } })
+}

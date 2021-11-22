@@ -30,3 +30,8 @@ module.exports.getTodos = async () => {
   const { todos } = await todoRepository.getAllTodos()
   return { todos }
 }
+
+module.exports.getTodoById = async (id) => {
+  const { todo } = await todoRepository.getTodoById(id)
+  return { todo }
+}

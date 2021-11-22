@@ -35,3 +35,18 @@ module.exports.getTodoById = async (id) => {
   const { todo } = await todoRepository.getTodoById(id)
   return { todo }
 }
+
+module.exports.updateTodo = async (id, body) => {
+  let returnObj = { error: null, success: null, message: null, }
+  const { todo, isCompleted } = body
+  const isTodo = await todoRepository.getTodoById(id)
+  if (!isTodo.todo) {
+    returnObj = { ...returnObj, error: true, message: "No record found" }
+    return returnObj
+  }
+
+  await todoRepository.updateTodo(id, { todo, isCompleted })
+  returnObj = { ...returnObj, success: true, message: "Record updated" }
+
+  return returnObj
+}

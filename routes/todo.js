@@ -1,4 +1,5 @@
 'use strict'
+
 const express = require('express')
 const router = express.Router()
 
@@ -8,9 +9,9 @@ const asyncHandler = fn => (req, res, next) => {
     .catch(next)
 }
 
+const todoController = require('../controllers/todoController')
 
-router.get('/', (req, res) => {
-  res.json({ msg: "All the todos" })
-})
+router.post('/', todoController.addTodo)
+router.get('/', todoController.getTodos)
 
 module.exports = router
